@@ -1,0 +1,47 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "openloyalty-spartacus": {
+      "projectType": "library",
+      "root": "projects/openloyalty-spartacus",
+      "sourceRoot": "projects/openloyalty-spartacus/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/openloyalty-spartacus/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/openloyalty-spartacus/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/openloyalty-spartacus/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+            "builder": "@angular-builders/jest:run",
+          "options": {          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/openloyalty-spartacus/**/*.ts",
+              "projects/openloyalty-spartacus/**/*.html"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  },
+  "defaultProject": "openloyalty-spartacus"
+}
