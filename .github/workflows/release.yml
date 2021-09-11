@@ -28,15 +28,15 @@ jobs:
                 run: npm test
             -   name: Building
                 run: npm run build
+            -   name: Generating docs
+                run: npm run compodoc
             -   name: Releasing
                 uses: cycjimmy/semantic-release-action@v2
                 env:
                     GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN }}
                     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
                     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-            -   name: Generating Docs
-                run: npm run compodoc
-            -   name: Publishing
+            -   name: Publishing docs
                 uses: peaceiris/actions-gh-pages@v3
                 with:
                     github_token: ${{ secrets.GITHUB_TOKEN }}
