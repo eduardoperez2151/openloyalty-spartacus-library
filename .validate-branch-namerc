@@ -1,0 +1,4 @@
+{
+    "pattern": "^(feature|bugfix|improvement|library|prerelease|release|hotfix)\/[a-z0-9._-]+$",
+    "errorMsg": "There is something wrong with your branch name.\nBranch names in this project must adhere to this contract: feature|bugfix|improvement|library|prerelease|release|hotfix.\nYour commit will be rejected.\nYou should rename your branch to a valid name and try again."
+}
