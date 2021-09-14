@@ -30,6 +30,11 @@ jobs:
                 run: npm run build
             -   name: Generating docs
                 run: npm run compodoc
+            -   name: Disable branch protection
+                uses: benjefferies/branch-protection-bot@master
+                if: always()
+                with:
+                    access-token: ${{ secrets.NPM_TOKEN }}
             -   name: Commiting docs changes
                 uses: EndBug/add-and-commit@v7
                 with:
@@ -37,18 +42,7 @@ jobs:
                     author_email: eduardo.perez.2151@gmail.com.uy
                     message: 'docs(compodoc): generate new doc version'
                     add: './docs'
-                    push: false
-            -   name: Push docs to protected branch
-                uses: CasperWA/push-protected@v2
-                with:
-                    token: ${{ secrets.NPM_TOKEN }}
-                    branch: master
-                    unprotect_reviews: true
-            -   name: Disable branch protection
-                uses: benjefferies/branch-protection-bot@master
-                if: always()
-                with:
-                    access-token: ${{ secrets.NPM_TOKEN }}
+                    push: true
             -   name: Releasing
                 uses: cycjimmy/semantic-release-action@v2
                 env:
