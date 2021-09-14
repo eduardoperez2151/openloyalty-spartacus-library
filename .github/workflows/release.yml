@@ -20,6 +20,9 @@ jobs:
                     scope: '@eduardoperez2151'
                 env:
                     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+            -   name: fix
+                run: |
+                    sudo chmod -R ugo+rwX .
             -   name: Install Dependencies
                 run: npm ci
             -   name: Linting
