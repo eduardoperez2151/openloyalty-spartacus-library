@@ -20,9 +20,6 @@ jobs:
                     scope: '@eduardoperez2151'
                 env:
                     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-#            -   name: fix
-#                run: |
-#                    sudo chmod -R ugo+rwX .
             -   name: Install Dependencies
                 run: npm ci
             -   name: Linting
@@ -33,6 +30,13 @@ jobs:
                 run: npm run build
             -   name: Generating docs
                 run: npm run compodoc
+            -   name: Enable "include administrators" branch protection
+                uses: benjefferies/branch-protection-bot@master
+                if: always()  # Force to always run this step to ensure "include administrators" is always turned back on
+                with:
+                    access-token: ${{ secrets.NPM_TOKEN }}
+                    owner: eduardoperez2151
+                    repo: openloyalty-spartacus-library
             -   name: Commiting docs changes
                 uses: EndBug/add-and-commit@v7
                 with:
