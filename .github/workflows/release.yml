@@ -44,12 +44,24 @@ jobs:
                     token: ${{ secrets.NPM_TOKEN }}
                     branch: master
                     unprotect_reviews: true
+            -   name: Disable branch protection
+                uses: benjefferies/branch-protection-bot@master
+                if: always()
+                with:
+                    access-token: ${{ secrets.NPM_TOKEN }}
             -   name: Releasing
                 uses: cycjimmy/semantic-release-action@v2
                 env:
                     GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN }}
                     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
                     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+            -   name: Enable branch protection
+                uses: benjefferies/branch-protection-bot@master
+                if: always()
+                with:
+                    access-token: ${{ secrets.NPM_TOKEN }}
+                    owner: eduardoperez2151
+                    repo: openloyalty-spartacus-library
             -   name: Publishing docs
                 uses: peaceiris/actions-gh-pages@v3
                 with:
