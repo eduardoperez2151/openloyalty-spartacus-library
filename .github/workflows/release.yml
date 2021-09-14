@@ -47,7 +47,7 @@ jobs:
                 uses: CasperWA/push-protected@v2
                 with:
                     token: ${{ secrets.NPM_TOKEN }}
-                    branch: master
+                    branch: gh-pages
                     unprotect_reviews: true
             -   name: Releasing
                 uses: cycjimmy/semantic-release-action@v2
