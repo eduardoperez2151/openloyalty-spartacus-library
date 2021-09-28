@@ -34,7 +34,7 @@ jobs:
                 uses: benjefferies/branch-protection-bot@master
                 if: always()
                 with:
-                    access-token: ${{ secrets.NPM_TOKEN }}
+                    access_token: ${{ secrets.NPM_TOKEN }}
             -   name: Commiting docs changes
                 uses: EndBug/add-and-commit@v7
                 with:
@@ -59,7 +59,7 @@ jobs:
                 uses: benjefferies/branch-protection-bot@master
                 if: always()
                 with:
-                    access-token: ${{ secrets.NPM_TOKEN }}
+                    access_token: ${{ secrets.NPM_TOKEN }}
                     owner: eduardoperez2151
                     repo: openloyalty-spartacus-library
             -   name: Publishing docs
